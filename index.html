@@ -4,947 +4,142 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LustRoad.com</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Permanent+Marker&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         :root {
-            --neon-pink: #FF0080;
-            --neon-purple: #8A2BE2;
-            --neon-blue: #00FFFF;
-            --dark-bg: #0A0A0A;
-            --darker-bg: #050505;
-            --white: #FFFFFF;
-            --gray: #888888;
-            --accent-red: #FF1744;
+            --main-orange: #ff9000;
+            --main-black: #181818;
+            --main-white: #fff;
+            --main-red: #ff3b3b;
         }
-
+        html, body {
+            height: 100%;
+        }
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--dark-bg);
-            color: var(--white);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        .hero-section {
             min-height: 100vh;
-            position: relative;
+            background: var(--main-orange);
+            color: var(--main-black);
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 0;
             display: flex;
+            flex-direction: column;
+        }
+        .hero {
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #0A0A0A 0%, #1A0A1A 50%, #0A0A0A 100%);
-            overflow: hidden;
-            padding: 80px 0 20px 0;
+            justify-content: flex-start;
+            padding-top: 60px;
+            padding-bottom: 30px;
         }
-
-        .background-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('photos/LustRoad.png');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.2;
-            z-index: 1;
+        .hero-img {
+            width: 320px;
+            max-width: 90vw;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+            margin-bottom: 24px;
         }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(10, 10, 10, 0.9) 0%, rgba(26, 10, 26, 0.8) 50%, rgba(10, 10, 10, 0.9) 100%);
-            z-index: 2;
+        .main-title {
+            font-family: 'Luckiest Guy', 'Permanent Marker', cursive, sans-serif;
+            font-size: 3.2rem;
+            color: var(--main-black);
+            text-shadow: 2px 2px 0 var(--main-white), 4px 4px 0 var(--main-red);
+            margin: 0 0 10px 0;
+            letter-spacing: 2px;
         }
-
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            text-align: center;
-            max-width: 1200px;
-            padding: 0 40px;
-            margin: 0 auto;
-            margin-top: 60px;
-        }
-
-        .domain-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 6rem;
-            font-weight: 900;
-            color: var(--neon-pink);
-            margin-bottom: 20px;
-            letter-spacing: 0.1em;
-            text-shadow: 
-                0 0 10px var(--neon-pink),
-                0 0 20px var(--neon-pink);
-            animation: neonGlow 2s ease-in-out infinite alternate;
-            position: relative;
-            line-height: 1.1;
-        }
-
-        .domain-title::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple), var(--neon-blue));
-            z-index: -1;
-            filter: blur(10px);
-            opacity: 0.2;
-            animation: borderGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes neonGlow {
-            0% { 
-                text-shadow: 
-                    0 0 10px var(--neon-pink),
-                    0 0 20px var(--neon-pink);
-            }
-            100% { 
-                text-shadow: 
-                    0 0 15px var(--neon-pink),
-                    0 0 30px var(--neon-pink);
-            }
-        }
-
-        @keyframes borderGlow {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 0.4; }
-        }
-
         .subtitle {
-            font-size: 1.5rem;
-            font-weight: 300;
-            color: var(--gray);
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.8;
-        }
-
-        .price-display {
-            background: linear-gradient(135deg, rgba(255, 0, 128, 0.1) 0%, rgba(138, 43, 226, 0.1) 100%);
-            border: 2px solid var(--neon-pink);
-            border-radius: 20px;
-            padding: 40px;
-            margin: 60px 0;
-            backdrop-filter: blur(20px);
-            position: relative;
-            overflow: visible;
-            box-shadow: 
-                0 0 30px rgba(255, 0, 128, 0.3),
-                inset 0 0 30px rgba(255, 0, 128, 0.1);
-            min-width: 400px;
-        }
-
-        .price-display::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 0, 128, 0.2), transparent);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .current-value {
-            font-size: 4rem;
-            font-weight: 800;
-            color: var(--neon-pink);
-            margin-bottom: 10px;
-            font-family: 'Orbitron', monospace;
-            text-shadow: 0 0 10px var(--neon-pink);
-            white-space: nowrap;
-            overflow: visible;
-            display: block;
-            width: 100%;
-        }
-
-        .value-label {
-            font-size: 1.2rem;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 500;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin: 80px 0;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-            width: 100%;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 0, 128, 0.3);
-            border-radius: 15px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: visible;
-            min-width: 200px;
-        }
-
-        .stat-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255, 0, 128, 0.1), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .stat-item:hover::before {
-            transform: translateX(100%);
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 0, 128, 0.1);
-            border-color: var(--neon-pink);
-            box-shadow: 0 20px 40px rgba(255, 0, 128, 0.2);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--neon-pink);
-            font-family: 'Orbitron', monospace;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px var(--neon-pink);
-            white-space: nowrap;
-            overflow: visible;
-            display: block;
-            width: 100%;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 500;
-        }
-
-        .cta-section {
-            margin: 80px 0;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, var(--neon-pink) 0%, var(--neon-purple) 100%);
-            color: var(--white);
-            border: none;
-            padding: 25px 60px;
+            font-family: 'Permanent Marker', cursive, sans-serif;
             font-size: 1.3rem;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            box-shadow: 
-                0 10px 30px rgba(255, 0, 128, 0.4),
-                0 0 20px rgba(255, 0, 128, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 
-                0 20px 50px rgba(255, 0, 128, 0.6),
-                0 0 30px rgba(255, 0, 128, 0.4);
-        }
-
-        .contact-section {
-            background: var(--darker-bg);
-            padding: 100px 0;
-            margin-top: 100px;
-            position: relative;
-        }
-
-        .contact-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(255, 0, 128, 0.05), transparent);
-            pointer-events: none;
-        }
-
-        .contact-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 40px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .contact-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--neon-pink);
-            text-align: center;
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px var(--neon-pink);
-        }
-
-        .contact-subtitle {
-            font-size: 1.2rem;
-            color: var(--gray);
-            text-align: center;
-            margin-bottom: 60px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .email-contact {
-            background: rgba(255, 255, 255, 0.02);
-            border: 2px solid rgba(255, 0, 128, 0.3);
-            border-radius: 20px;
-            padding: 60px;
-            backdrop-filter: blur(20px);
-            text-align: center;
-            box-shadow: 0 0 30px rgba(255, 0, 128, 0.1);
-        }
-
-        .email-box {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
+            color: var(--main-black);
             margin-bottom: 30px;
-            padding: 30px;
-            background: rgba(255, 0, 128, 0.1);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 0, 128, 0.5);
-        }
-
-        .email-box i {
-            font-size: 2rem;
-            color: var(--neon-pink);
-            text-shadow: 0 0 10px var(--neon-pink);
-        }
-
-        .email-text {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--neon-pink);
-            font-family: 'Inter', sans-serif;
-            text-shadow: 0 0 10px var(--neon-pink);
-        }
-
-        .copy-btn {
-            background: linear-gradient(135deg, var(--neon-purple) 0%, var(--neon-blue) 100%);
-            color: var(--white);
-            border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
-        }
-
-        .copy-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.5);
-        }
-
-        .email-note {
-            font-size: 1.1rem;
-            color: var(--gray);
-            font-style: italic;
-        }
-
-        .footer {
-            background: var(--darker-bg);
-            padding: 40px 0;
             text-align: center;
-            border-top: 1px solid rgba(255, 0, 128, 0.2);
+            max-width: 420px;
         }
-
-        .footer-text {
-            color: var(--gray);
-            font-size: 0.9rem;
-            font-weight: 400;
-        }
-
-        .floating {
-            animation: floating 6s ease-in-out infinite;
-        }
-
-        @keyframes floating {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .pulse {
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .info-box {
+            background: var(--main-white);
+            color: var(--main-black);
+            border-radius: 18px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            padding: 28px 24px 18px 24px;
+            margin-bottom: 32px;
+            max-width: 350px;
             width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
+            text-align: center;
         }
-
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--neon-pink);
-            border-radius: 50%;
-            animation: particleFloat 20s infinite linear;
-            box-shadow: 0 0 10px var(--neon-pink);
+        .info-box strong {
+            font-size: 1.2rem;
+            color: var(--main-red);
         }
-
-        @keyframes particleFloat {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
+        .price-row {
+            font-size: 1.5rem;
+            font-family: 'Luckiest Guy', cursive, sans-serif;
+            margin: 10px 0 18px 0;
+            color: var(--main-black);
         }
-
-        /* Mobile-specific optimizations */
-        @media (max-width: 480px) {
-            .hero-section {
-                padding: 60px 0 10px 0;
-            }
-            
-            .hero-content {
-                padding: 0 20px;
-                margin-top: 40px;
-            }
-            
-            .domain-title {
-                font-size: 2.5rem;
-                line-height: 1.1;
-                margin-bottom: 15px;
-                letter-spacing: 0.05em;
-            }
-            
-            .subtitle {
-                font-size: 1rem;
-                line-height: 1.6;
-                margin-bottom: 30px;
-            }
-            
-            .price-display {
-                padding: 25px 15px;
-                margin: 40px 0;
-                overflow: visible;
-                min-width: auto;
-            }
-            
-            .current-value {
-                font-size: 1.8rem;
-                margin-bottom: 8px;
-                white-space: nowrap;
-                overflow: visible;
-                display: block;
-                width: 100%;
-            }
-            
-            .value-label {
-                font-size: 0.9rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-                margin: 50px 0;
-                width: 100%;
-            }
-            
-            .stat-item {
-                padding: 20px 15px;
-                overflow: visible;
-                min-width: auto;
-            }
-            
-            .stat-number {
-                font-size: 1.8rem;
-                margin-bottom: 8px;
-                white-space: nowrap;
-                overflow: visible;
-                display: block;
-                width: 100%;
-            }
-            
-            .stat-label {
-                font-size: 0.8rem;
-            }
-            
-            .cta-section {
-                margin: 50px 0;
-            }
-            
-            .cta-button {
-                padding: 18px 30px;
-                font-size: 1rem;
-                width: 100%;
-                max-width: 280px;
-            }
-            
-            .contact-section {
-                padding: 60px 0;
-                margin-top: 60px;
-            }
-            
-            .contact-container {
-                padding: 0 20px;
-            }
-            
-            .contact-title {
-                font-size: 1.8rem;
-                margin-bottom: 15px;
-            }
-            
-            .contact-subtitle {
-                font-size: 0.9rem;
-                margin-bottom: 40px;
-            }
-            
-            .email-contact {
-                padding: 30px 15px;
-                overflow: visible;
-            }
-            
-            .email-box {
-                flex-direction: column;
-                gap: 15px;
-                padding: 20px 15px;
-                overflow: visible;
-            }
-            
-            .email-box i {
-                font-size: 1.5rem;
-            }
-            
-            .email-text {
-                font-size: 1rem;
-                word-break: break-all;
-                white-space: nowrap;
-                overflow: visible;
-            }
-            
-            .copy-btn {
-                padding: 12px 20px;
-                font-size: 0.8rem;
-                width: 100%;
-                max-width: 150px;
-            }
-            
-            .email-note {
-                font-size: 0.9rem;
-                line-height: 1.5;
-            }
-            
-            .footer {
-                padding: 30px 0;
-            }
-            
-            .footer-text {
-                font-size: 0.8rem;
-            }
+        .cta-btn {
+            display: inline-block;
+            background: var(--main-red);
+            color: var(--main-white);
+            font-family: 'Luckiest Guy', cursive, sans-serif;
+            font-size: 1.4rem;
+            padding: 18px 38px;
+            border: none;
+            border-radius: 50px;
+            margin: 18px 0 0 0;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+            letter-spacing: 1px;
+            transition: background 0.2s, transform 0.2s;
         }
-
-        /* Tablet optimizations */
-        @media (min-width: 481px) and (max-width: 768px) {
-            .hero-section {
-                padding: 70px 0 15px 0;
-            }
-            
-            .hero-content {
-                padding: 0 30px;
-                margin-top: 50px;
-            }
-            
-            .domain-title {
-                font-size: 3.5rem;
-            }
-            
-            .subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .price-display {
-                padding: 35px 25px;
-                margin: 50px 0;
-                overflow: visible;
-                min-width: auto;
-            }
-            
-            .current-value {
-                font-size: 2.5rem;
-                white-space: nowrap;
-                overflow: visible;
-                display: block;
-                width: 100%;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 25px;
-                width: 100%;
-            }
-            
-            .stat-number {
-                font-size: 2.2rem;
-                white-space: nowrap;
-                overflow: visible;
-                display: block;
-                width: 100%;
-            }
-            
-            .stat-item {
-                min-width: auto;
-            }
-            
-            .cta-button {
-                padding: 20px 40px;
-                font-size: 1.1rem;
-            }
-            
-            .contact-container {
-                padding: 0 30px;
-            }
-            
-            .email-contact {
-                padding: 40px 25px;
-                overflow: visible;
-            }
-            
-            .email-box {
-                padding: 25px 20px;
-                overflow: visible;
-            }
-            
-            .email-text {
-                font-size: 1.3rem;
-                white-space: nowrap;
-                overflow: visible;
-            }
+        .cta-btn:hover {
+            background: #d81b60;
+            transform: scale(1.04);
         }
-
-        /* Touch-friendly improvements */
-        @media (hover: none) and (pointer: coarse) {
-            .cta-button {
-                min-height: 60px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            
-            .copy-btn {
-                min-height: 50px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            
-            .stat-item {
-                min-height: 120px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
+        .contact {
+            margin: 40px auto 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--main-black);
         }
-
-        /* Reduced motion for accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            .floating {
-                animation: none;
-            }
-            
-            .pulse {
-                animation: none;
-            }
-            
-            .particle {
-                animation: none;
-            }
-            
-            .cta-button::before {
-                animation: none;
-            }
-            
-            .price-display::before {
-                animation: none;
-            }
+        .contact strong {
+            color: var(--main-red);
+            font-family: 'Permanent Marker', cursive, sans-serif;
+        }
+        .footer {
+            margin-top: auto;
+            padding: 30px 0 10px 0;
+            text-align: center;
+            color: var(--main-black);
+            font-size: 1rem;
+            font-family: 'Permanent Marker', cursive, sans-serif;
+        }
+        @media (max-width: 600px) {
+            .main-title { font-size: 2.1rem; }
+            .subtitle { font-size: 1.05rem; }
+            .info-box { padding: 18px 8px 10px 8px; }
+            .price-row { font-size: 1.1rem; }
+            .cta-btn { font-size: 1.1rem; padding: 14px 18px; }
         }
     </style>
 </head>
 <body>
-    <div class="hero-section">
-        <div class="background-image"></div>
-        <div class="overlay"></div>
-        
-        <div class="particles" id="particles"></div>
-        
-        <div class="hero-content">
-            <h1 class="domain-title floating">LustRoad.com</h1>
-            <p class="subtitle">I know you are here because of the domain name. I acquired this for $150,000 and now I am listing it to sell.</p>
-            
-            <div class="price-display pulse">
-                <div class="current-value" id="currentValue">$235,000</div>
-                <div class="value-label">Current Market Value</div>
-            </div>
-            
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number" id="bidCount">25</div>
-                    <div class="stat-label">Active Bids</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="acquisitionPrice">$150,000</div>
-                    <div class="stat-label">Acquisition Price</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" id="appreciation">56.7%</div>
-                    <div class="stat-label">Value Appreciation</div>
-                </div>
-            </div>
-            
-            <div class="cta-section">
-                <a href="#contact" class="cta-button">
-                    <i class="fas fa-fire"></i> Make Your Offer
-                </a>
-            </div>
+    <div class="hero">
+        <img src="photos/LustRoad.png" alt="LustRoad.com Logo" class="hero-img" />
+        <h1 class="main-title">LustRoad.com</h1>
+        <div class="subtitle">I know you are here because of the domain name. I acquired this for <b>$150,000</b> and now I am listing it to sell. This is your chance to own a brand that stands out and gets noticed.</div>
+        <div class="info-box">
+            <div class="price-row">Current Value: <strong>$235,000</strong></div>
+            <div>Bids so far: <strong>25</strong></div>
         </div>
+        <a href="mailto:deveshdv760@gmail.com?subject=I want to buy LustRoad.com" class="cta-btn">Send Your Offer</a>
     </div>
-
-    <div class="contact-section" id="contact">
-        <div class="contact-container">
-            <h2 class="contact-title">Interested in purchasing this domain?</h2>
-            <p class="contact-subtitle">Send your price to <strong>deveshdv760@gmail.com</strong></p>
-            
-            <div class="email-contact">
-                <div class="email-box">
-                    <i class="fas fa-envelope"></i>
-                    <span class="email-text">deveshdv760@gmail.com</span>
-                    <button class="copy-btn" onclick="copyEmail()">
-                        <i class="fas fa-copy"></i> Copy
-                    </button>
-                </div>
-                <p class="email-note">I'll get back to you within 24 hours with a response to your offer.</p>
-            </div>
-        </div>
+    <div class="contact">
+        Interested in purchasing? Email your price to <strong>deveshdv760@gmail.com</strong><br>
+        I'll get back to you within 24 hours.
     </div>
-
     <div class="footer">
-        <p class="footer-text">&copy; 2024 LustRoad.com</p>
+        &copy; 2024 LustRoad.com
     </div>
-
-    <script>
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Animated counter with premium styling
-        function animateCounter(element, target, duration = 3000) {
-            const start = 0;
-            const increment = target / (duration / 16);
-            let current = start;
-            
-            function updateCounter() {
-                current += increment;
-                if (current < target) {
-                    if (element.id === 'currentValue') {
-                        element.textContent = '$' + Math.floor(current).toLocaleString();
-                    } else if (element.id === 'appreciation') {
-                        element.textContent = Math.floor(current * 10) / 10 + '%';
-                    } else {
-                        element.textContent = Math.floor(current).toLocaleString();
-                    }
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    if (element.id === 'currentValue') {
-                        element.textContent = '$' + target.toLocaleString();
-                    } else if (element.id === 'appreciation') {
-                        element.textContent = '56.7%';
-                    } else {
-                        element.textContent = target.toLocaleString();
-                    }
-                }
-            }
-            updateCounter();
-        }
-
-        // Simulate premium bid activity
-        function simulatePremiumBids() {
-            const bidCountElement = document.getElementById('bidCount');
-            let currentBids = 25;
-            
-            setInterval(() => {
-                if (Math.random() > 0.8) { // 20% chance every 8 seconds
-                    currentBids++;
-                    bidCountElement.textContent = currentBids;
-                    bidCountElement.style.color = '#FF0080';
-                    bidCountElement.style.transform = 'scale(1.1)';
-                    setTimeout(() => {
-                        bidCountElement.style.color = '';
-                        bidCountElement.style.transform = '';
-                    }, 1000);
-                }
-            }, 8000);
-        }
-
-        // Copy email functionality
-        function copyEmail() {
-            const email = 'deveshdv760@gmail.com';
-            navigator.clipboard.writeText(email).then(function() {
-                const copyBtn = document.querySelector('.copy-btn');
-                const originalText = copyBtn.innerHTML;
-                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                copyBtn.style.background = 'linear-gradient(135deg, #00FF00 0%, #00CC00 100%)';
-                
-                setTimeout(() => {
-                    copyBtn.innerHTML = originalText;
-                    copyBtn.style.background = 'linear-gradient(135deg, var(--neon-purple) 0%, var(--neon-blue) 100%)';
-                }, 2000);
-            }).catch(function(err) {
-                console.error('Could not copy text: ', err);
-                alert('Email: deveshdv760@gmail.com');
-            });
-        }
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Initialize premium experience
-        document.addEventListener('DOMContentLoaded', function() {
-            createParticles();
-            
-            // Animate counters with delay for premium feel
-            setTimeout(() => {
-                animateCounter(document.getElementById('currentValue'), 235000);
-            }, 1500);
-            
-            setTimeout(() => {
-                animateCounter(document.getElementById('bidCount'), 25);
-            }, 2000);
-            
-            setTimeout(() => {
-                animateCounter(document.getElementById('appreciation'), 56.7);
-            }, 2500);
-            
-            // Start premium bid simulation
-            simulatePremiumBids();
-            
-            // Add premium hover effects
-            document.querySelectorAll('.stat-item').forEach(item => {
-                item.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-15px) scale(1.05)';
-                    this.style.boxShadow = '0 30px 60px rgba(255, 0, 128, 0.3)';
-                });
-                
-                item.addEventListener('mouseleave', function() {
-                    this.style.transform = '';
-                    this.style.boxShadow = '';
-                });
-            });
-        });
-
-        // Parallax effect for premium feel
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const background = document.querySelector('.background-image');
-            background.style.transform = `translateY(${scrolled * 0.3}px)`;
-        });
-    </script>
 </body>
 </html> 
